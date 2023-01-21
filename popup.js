@@ -27,8 +27,16 @@ async function onClickHandler() {
     });
     const selectedText = scriptRes[0].result;
 
-    console.log(selectedText);
-    // chrome.runtime.sendMessage({ selectedText: selectedText });
+    chrome.runtime.sendMessage({ selectedText: selectedText });
 }
 
+async function onMessageReceived(request, sender, sendResponse) {
+    if (request.status) {
+        console.log(request.status);
+    }
+}
+
+// Listeners
 document.getElementById("generate").addEventListener("click", onClickHandler);
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => { onMessageReceived(request, sender, sendResponse) });
