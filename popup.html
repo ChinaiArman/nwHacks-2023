@@ -5,17 +5,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartNotes</title>
+    <title>NoteIt</title>
 
     <link rel="stylesheet" href="popup.css">
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="title-container">
+                <img src="/images/icon-48.png" class="d-inline-block align-text-top" width="32" height="32">
+                <span id="title">Hello</span>
+            </div>
+            <div>
+                <a href="#">
+                    <img src="/images/gear.png" width="16" height="16">
+                </a>
+                <a href="#">
+                    <img src="/images/questionmark.png" width="16" height="16">
+                </a>
+            </div>
+        </div>
+    </nav>
     <div class="container">
-        <h4 id="title">SmartNotes</h4>
         <div class="centered-btn-conatiner">
+            <button id="generate-btn" class="btn center-btn">See selected</button>
+            <button id="generate-btn" class="btn center-btn">See selected</button>
+            <button id="generate-btn" class="btn center-btn">See selected</button>
             <button id="generate-btn" class="btn center-btn">See selected</button>
         </div>
     </div>

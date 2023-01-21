@@ -1,8 +1,7 @@
 #title {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin: 1em;
-    padding: 0;
+    padding-left: 5px;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .centered-btn-container {
@@ -12,4 +11,17 @@
 
 .center-btn {
     margin: auto;
+}
+
+body {
+    width: 300px !important;
+    height: 200px !important;
+}
+
+.navbar {
+    padding: 10px 0px !important;
+}
+
+.title-container {
+    display: table;
 }
