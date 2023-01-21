@@ -1,0 +1,15 @@
+#title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 1em;
+    padding: 0;
+}
+
+.centered-btn-container {
+    text-align: center;
+    width: 100%;
+}
+
+.center-btn {
+    margin: auto;
+}

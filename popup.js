@@ -37,6 +37,6 @@ async function onMessageReceived(request, sender, sendResponse) {
 }
 
 // Listeners
-document.getElementById("generate").addEventListener("click", onClickHandler);
+document.getElementById("generate-btn").addEventListener("click", onClickHandler);
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => { onMessageReceived(request, sender, sendResponse) });
