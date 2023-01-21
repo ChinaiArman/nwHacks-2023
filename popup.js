@@ -27,7 +27,8 @@ async function onClickHandler() {
     });
     const selectedText = scriptRes[0].result;
 
-    chrome.runtime.sendMessage({ selectedText: selectedText });
+    console.log(selectedText);
+    // chrome.runtime.sendMessage({ selectedText: selectedText });
 }
 
 document.getElementById("generate").addEventListener("click", onClickHandler);
