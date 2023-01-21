@@ -1,0 +1,34 @@
+{
+    "name": "SmartNotes",
+    "description": "An extension that uses AI to generate notes from highlighted text.",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "host_permissions": [
+        "https://*/*",
+        "http://*/*"
+    ],
+    "icons": {
+        "16": "/images/icon-16.png",
+        "32": "/images/icon-32.png",
+        "48": "/images/icon-48.png",
+        "128": "/images/icon-128.png"
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "/images/icon-16.png",
+            "32": "/images/icon-32.png",
+            "48": "/images/icon-48.png",
+            "128": "/images/icon-128.png"
+        }
+    },
+    "permissions": [
+        "storage",
+        "activeTab",
+        "scripting",
+        "tabs"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    }
+}
