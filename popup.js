@@ -1,3 +1,7 @@
+function countWords(str) {
+    return str.trim().split(/\s+/).length;
+};
+
 function getSelectedText() {
     var text = "";
 
@@ -29,7 +33,6 @@ async function getGeneratedNotes(prompt) {
     })
 
     const data = await response.json();
-    console.log(data.notes);
     return data.notes;
 }
 
@@ -74,8 +77,6 @@ async function submitQuery(selectedText) {
 
         formattedResults += "</ul>";
 
-        console.log(formattedResults);
-
         resultDiv.innerHTML = formattedResults;
     } else if (notes && !notes.includes("-") && !notes.includes("•")) {
         let formattedResults = "<ul>";
@@ -88,8 +89,6 @@ async function submitQuery(selectedText) {
             });
 
         formattedResults += "</ul>";
-
-        console.log(formattedResults);
 
         resultDiv.innerHTML = formattedResults;
     } else {
@@ -105,10 +104,24 @@ function tooLittleWordError() {
     const generateBtn = document.getElementById("generate-btn");
     generateBtn.classList.add("btn-error");
 
-    console.log("not enough text")
     const errorMessageParagraph = document.getElementById("error-msg");
     errorMessageParagraph.classList.remove("hidden");
     errorMessageParagraph.innerHTML = 'ERROR: Please select more than 10 words.';
+
+    // stop button shake
+    setTimeout(() => {
+        generateBtn.classList.remove("btn-error");
+    }, 500);
+}
+
+function tooManyWords() {
+    // shake the button
+    const generateBtn = document.getElementById("generate-btn");
+    generateBtn.classList.add("btn-error");
+
+    const errorMessageParagraph = document.getElementById("error-msg");
+    errorMessageParagraph.classList.remove("hidden");
+    errorMessageParagraph.innerHTML = 'ERROR: Please limit your selection to less than 1000 words.';
 
     // stop button shake
     setTimeout(() => {
@@ -125,8 +138,10 @@ async function onClickHandler() {
     });
     const selectedText = scriptRes[0].result;
 
-    if (!selectedText || selectedText.split(" ").length < 10) {
+    if (!selectedText || countWords(selectedText) < 10) {
         tooLittleWordError();
+    } else if (countWords(selectedText) > 1000) {
+        tooManyWords();
     } else {
         submitQuery(selectedText);
     }
@@ -135,7 +150,6 @@ async function onClickHandler() {
 async function CopyToClipboard() {
     var element = document.getElementById("result-container");
     var elementText = element.innerHTML.replaceAll('<li class="note-bullet">', '').replaceAll('</li>', '\n').replaceAll('<ul>', '').replaceAll('</ul>', '')
-    console.log(elementText)
     navigator.clipboard.writeText(elementText);
 }
 
