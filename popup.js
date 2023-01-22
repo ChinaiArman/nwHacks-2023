@@ -18,6 +18,13 @@ async function getCurrentTab() {
 }
 
 async function onClickHandler() {
+    // clear the results
+    document.getElementById("result-container").innerHTML = "";
+
+    // show the loading spinner
+    const loadingSpinner = document.getElementById("loading-spinner");
+    loadingSpinner.classList.remove("hidden");
+
     const tab = await getCurrentTab();
 
     // executes the script in the context of the current tab
@@ -32,8 +39,23 @@ async function onClickHandler() {
 }
 
 async function onMessageReceived(request, sender, sendResponse) {
-    if (request.status) {
-        console.log(request.status);
+    if (request.notes) {
+        const resultDiv = document.getElementById("result-container");
+        const notes = request.notes;
+
+        let formattedResults = '<ul>';
+
+        notes.split("- ").slice(1).forEach(element => {
+            formattedResults += `<li class="note-bullet">${element}</li>`;
+        });
+
+        formattedResults += '</ul>';
+
+        resultDiv.innerHTML = formattedResults;
+
+        // hide the loading spinner
+        const loadingSpinner = document.getElementById("loading-spinner");
+        loadingSpinner.classList.add("hidden");
     }
 }
 

@@ -56,3 +56,14 @@ body {
 .hidden {
     display: none !important;
 }
+
+.note-bullet {
+    font-size: 0.75em;
+}
+
+.loading-spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

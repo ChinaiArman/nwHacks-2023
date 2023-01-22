@@ -14,6 +14,7 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
         })
 
         const data = await response.json();
-        console.log(data.notes);
+
+        chrome.runtime.sendMessage({ notes: data.notes });
     }
 });
