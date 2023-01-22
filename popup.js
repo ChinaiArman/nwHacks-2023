@@ -47,11 +47,12 @@ async function getGeneratedNotes(prompt) {
     return data.notes;
 }
 
-async function onClickHandler() {
+async function submitQuery(selectedText) {
     const resultDiv = document.getElementById("result-container");
+    const resultCard = document.querySelector(".bg-card");
 
     // show the popup
-    document.querySelector(".bg-card").classList.toggle("hidden");
+    resultCard.classList.toggle("hidden");
     // clear the results
     resultDiv.innerHTML = "";
 
@@ -59,20 +60,8 @@ async function onClickHandler() {
     const loadingSpinner = document.getElementById("loading-spinner");
     loadingSpinner.classList.remove("hidden");
 
-    const tab = await getCurrentTab();
-
-    // executes the script in the context of the current tab
-    const scriptRes = await chrome.scripting.executeScript({
-        target: { tabId: tab.id },
-        function: getSelectedText,
-    });
-    const selectedText = scriptRes[0].result;
-
     // send request
     const notes = await getGeneratedNotes(selectedText);
-
-    // show the result div
-    resultDiv.classList.remove("hidden");
 
     if (notes && notes.includes("-")) {
         let formattedResults = "<ul>";
@@ -123,6 +112,26 @@ async function onClickHandler() {
 
     // hide the loading spinner
     loadingSpinner.classList.add("hidden");
+}
+
+async function onClickHandler() {
+    const tab = await getCurrentTab();
+    // executes the script in the context of the current tab
+    const scriptRes = await chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        function: getSelectedText,
+    });
+    const selectedText = scriptRes[0].result;
+
+    if (selectedText.split(" ").length > 10) {
+        submitQuery(selectedText);
+    } else {
+        console.log("not enough text")
+        const resultDiv = document.getElementById("result-container");
+        const resultCard = document.querySelector(".bg-card");
+        resultCard.classList.remove("hidden");
+        resultDiv.innerHTML = '<p class="error-msg">Error: Please select more than 10 words.</p>';
+    }
 }
 
 async function CopyToClipboard() {
