@@ -23,17 +23,22 @@ async function getCurrentTab() {
 }
 
 async function getGeneratedNotes(prompt) {
-    const response = await fetch("http://localhost:3000/create-notes", {
-        method: "POST",
-        mode: "cors",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ prompt: prompt })
-    })
+    try {
+        const response = await fetch("http://localhost:3000/create-notes", {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ prompt: prompt })
+        })
 
-    const data = await response.json();
-    return data.notes;
+        const data = await response.json();
+        return data.notes;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
 }
 
 async function submitQuery(selectedText) {
@@ -111,7 +116,7 @@ function tooLittleWordError() {
     // stop button shake
     setTimeout(() => {
         generateBtn.classList.remove("btn-error");
-    }, 500);
+    }, 800);
 }
 
 function tooManyWords() {
@@ -126,7 +131,7 @@ function tooManyWords() {
     // stop button shake
     setTimeout(() => {
         generateBtn.classList.remove("btn-error");
-    }, 500);
+    }, 800);
 }
 
 async function onClickHandler() {

@@ -96,11 +96,21 @@ ul {
     padding: 0;
 }
 
-#error-msg {
+.error-msg {
     color: red;
     font-size: 0.8em;
     text-align: center;
-    animation: fade 3s linear;
+    animation: fadeIn .5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 #msg {
@@ -123,7 +133,7 @@ ul {
 }
 
 .btn-error {
-    animation: horizontal-shaking 1s ease-in-out infinite;
+    animation: horizontal-shaking 0.4s ease-in-out infinite;
 }
 
 @keyframes horizontal-shaking {
