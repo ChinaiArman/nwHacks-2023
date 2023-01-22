@@ -41,7 +41,7 @@ async function submitQuery(selectedText) {
     const resultCard = document.querySelector(".bg-card");
 
     // show the popup
-    resultCard.classList.toggle("hidden");
+    resultCard.classList.remove("hidden");
     // clear the results
     resultDiv.innerHTML = "";
 
@@ -147,10 +147,22 @@ async function onClickHandler() {
     }
 }
 
-async function CopyToClipboard() {
+function CopyToClipboard() {
     var element = document.getElementById("result-container");
     var elementText = element.innerHTML.replaceAll('<li class="note-bullet">', '').replaceAll('</li>', '\n').replaceAll('<ul>', '').replaceAll('</ul>', '')
     navigator.clipboard.writeText(elementText);
+}
+
+function handleCopyButton() {
+    CopyToClipboard();
+
+    const messageParagraph = document.getElementById("msg");
+    messageParagraph.classList.remove("hidden");
+    messageParagraph.innerHTML = "Notes copied to clipboard!";
+
+    setTimeout(() => {
+        messageParagraph.classList.add("hidden");
+    }, 3000);
 }
 
 // Listeners
@@ -158,4 +170,4 @@ document
     .getElementById("generate-btn")
     .addEventListener("click", onClickHandler);
 
-document.getElementById("copy-btn").addEventListener("click", CopyToClipboard);
+document.getElementById("copy-btn").addEventListener("click", handleCopyButton);
