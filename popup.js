@@ -33,11 +33,27 @@ async function getCurrentTab() {
     return tab;
 }
 
+async function getGeneratedNotes(prompt) {
+    const response = await fetch("http://localhost:3000/create-notes", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ prompt: prompt })
+    })
+
+    const data = await response.json();
+    return data.notes;
+}
+
 async function onClickHandler() {
+    const resultDiv = document.getElementById("result-container");
+
     // show the popup
     document.querySelector(".bg-card").classList.toggle("hidden");
     // clear the results
-    document.getElementById("result-container").innerHTML = "";
+    resultDiv.innerHTML = "";
 
     // show the loading spinner
     const loadingSpinner = document.getElementById("loading-spinner");
@@ -52,34 +68,61 @@ async function onClickHandler() {
     });
     const selectedText = scriptRes[0].result;
 
-    // sends a message to the background script
-    chrome.runtime.sendMessage({ selectedText: selectedText });
-}
+    // send request
+    const notes = await getGeneratedNotes(selectedText);
 
-async function onMessageReceived(request, sender, sendResponse) {
-    if (request.notes) {
-        const resultDiv = document.getElementById("result-container");
-        const notes = request.notes;
+    // show the result div
+    resultDiv.classList.remove("hidden");
 
-        console.log(notes);
-
+    if (notes && notes.includes("-")) {
         let formattedResults = "<ul>";
 
         notes
-            .split("- ")
+            .split("-")
             .slice(1)
             .forEach((element) => {
-                formattedResults += `<li class="note-bullet">${element}</li>`;
+                formattedResults += `<li class="note-bullet">${element.trim()}</li>`;
             });
 
         formattedResults += "</ul>";
 
         resultDiv.innerHTML = formattedResults;
+    } else if (notes && notes.includes("•")) {
+        let formattedResults = "<ul>";
 
-        // hide the loading spinner
-        const loadingSpinner = document.getElementById("loading-spinner");
-        loadingSpinner.classList.add("hidden");
+        notes
+            .split("•")
+            .slice(1)
+            .forEach((element) => {
+                formattedResults += `<li class="note-bullet">${element.trim()}</li>`;
+            });
+
+        formattedResults += "</ul>";
+
+        console.log(formattedResults);
+
+        resultDiv.innerHTML = formattedResults;
+    } else if (notes && !notes.includes("-") && !notes.includes("•")) {
+        let formattedResults = "<ul>";
+
+        notes
+            .split("\n")
+            .slice(1)
+            .forEach((element) => {
+                formattedResults += `<li class="note-bullet">${element.trim()}</li>`;
+            });
+
+        formattedResults += "</ul>";
+
+        console.log(formattedResults);
+
+        resultDiv.innerHTML = formattedResults;
+    } else {
+        resultDiv.innerHTML = '<p class="error-msg">Error: Could not generate notes, please try again.</p>';
     }
+
+    // hide the loading spinner
+    loadingSpinner.classList.add("hidden");
 }
 
 async function CopyToClipboard() {
@@ -93,18 +136,5 @@ async function CopyToClipboard() {
 document
     .getElementById("generate-btn")
     .addEventListener("click", onClickHandler);
+
 document.getElementById("copy-btn").addEventListener("click", CopyToClipboard);
-document.getElementById("result-container").style.display = "none";
-
-document.getElementById("generate-btn").addEventListener("click", function () {
-    document.getElementById("result-container").style.display = "block";
-});
-
-// Listeners
-document
-    .getElementById("generate-btn")
-    .addEventListener("click", onClickHandler);
-
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    onMessageReceived(request, sender, sendResponse);
-});
