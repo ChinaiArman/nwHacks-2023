@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NoteIt</title>
+    <title>noteAI</title>
 
     <link rel="stylesheet" href="popup.css">
     <!-- bootstrap -->
@@ -14,19 +14,16 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar">
         <div class="container-fluid">
             <div class="title-container">
                 <img src="/images/icon-48.png" class="d-inline-block align-text-top" width="32" height="32">
-                <span id="title">NoteIt</span>
+                <span id="title">noteAI</span>
             </div>
             <div>
-                <a href="/help.html" class="nav-icon">
-                    <img src="/images/questionmark.png" width="12" height="12">
-                </a>
-                <a href="/settings.html" class="nav-icon">
-                    <img src="/images/gear.png" width="12" height="12">
-                </a>
+                <!-- <a href="/settings.html" class="nav-icon"> -->
+                <div id="settings-img"></div>
+                <!-- </a> -->
             </div>
         </div>
     </nav>
@@ -47,7 +44,7 @@
 
     </div>
     <div class="button-holder">
-        <button id="generate-btn" class="btn btn-primary" type="button">Generate</button>
+        <button id="generate-btn" class="btn" type="button">Generate</button>
     </div>
 
     <script src="popup.js"></script>
