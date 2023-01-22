@@ -11,6 +11,22 @@ function getSelectedText() {
     return text;
 }
 
+function myFunction() {
+    console.log("in")
+    // Get the text field
+    var copyText = document.getElementById("myInput");
+
+    // Select the text field
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+
+    // Copy the text inside the text field
+    navigator.clipboard.writeText('banana');
+
+    // Alert the copied text
+    alert("Copied the text: " + copyText.value);
+}
+
 async function getCurrentTab() {
     let queryOptions = { active: true, currentWindow: true };
     let [tab] = await chrome.tabs.query(queryOptions);
@@ -59,7 +75,15 @@ async function onMessageReceived(request, sender, sendResponse) {
     }
 }
 
+async function CopyToClipboard() {
+    var element = document.getElementById("result-container")
+    console.log(element.textContent)
+
+    navigator.clipboard.writeText(element.textContent);
+}
+
 // Listeners
 document.getElementById("generate-btn").addEventListener("click", onClickHandler);
+document.getElementById("copy-btn").addEventListener("click", CopyToClipboard);
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => { onMessageReceived(request, sender, sendResponse) });
