@@ -62,10 +62,8 @@ async function onMessageReceived(request, sender, sendResponse) {
   }
 }
 
-document.getElementById("result-container").style.display = "none";
-
 document.getElementById("generate-btn").addEventListener("click", function () {
-  document.getElementById("result-container").style.display = "block";
+  document.querySelector(".bg-card").classList.toggle("hidden");
 });
 
 // Listeners
