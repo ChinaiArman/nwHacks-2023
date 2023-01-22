@@ -121,6 +121,7 @@ function tooLittleWordError() {
 
     console.log("not enough text")
     const errorMessageParagraph = document.getElementById("error-msg");
+    errorMessageParagraph.classList.remove("hidden");
     errorMessageParagraph.innerHTML = 'ERROR: Please select more than 10 words.';
 
     // stop button shake

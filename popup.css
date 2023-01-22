@@ -5,8 +5,13 @@
 }
 
 body {
-    width: 300px !important;
+    width: 400px !important;
     /* height: 200px !important; */
+}
+
+ol {
+    margin-left: 55px;
+    margin-right: 55px;
 }
 
 .navbar {
