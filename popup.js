@@ -182,7 +182,7 @@ function handleCopyButton() {
 
     const messageParagraph = document.getElementById("msg");
     messageParagraph.classList.remove("hidden");
-    messageParagraph.innerHTML = "Notes copied to clipboard!";
+    messageParagraph.innerHTML = "Copied to clipboard!";
 
     setTimeout(() => {
         messageParagraph.classList.add("hidden");
