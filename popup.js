@@ -8,23 +8,8 @@ function getSelectedText() {
         text = document.selection.createRange().text;
     }
 
+    text.replace('-', '').replace('•', '');
     return text;
-}
-
-function myFunction() {
-    console.log("in");
-    // Get the text field
-    var copyText = document.getElementById("myInput");
-
-    // Select the text field
-    copyText.select();
-    copyText.setSelectionRange(0, 99999); // For mobile devices
-
-    // Copy the text inside the text field
-    navigator.clipboard.writeText("banana");
-
-    // Alert the copied text
-    alert("Copied the text: " + copyText.value);
 }
 
 async function getCurrentTab() {
@@ -44,6 +29,7 @@ async function getGeneratedNotes(prompt) {
     })
 
     const data = await response.json();
+    console.log(data.notes);
     return data.notes;
 }
 
@@ -95,7 +81,7 @@ async function submitQuery(selectedText) {
         let formattedResults = "<ul>";
 
         notes
-            .split("\n")
+            .split(".")
             .slice(1)
             .forEach((element) => {
                 formattedResults += `<li class="note-bullet">${element.trim()}</li>`;
