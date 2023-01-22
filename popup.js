@@ -134,9 +134,9 @@ async function onClickHandler() {
 
 async function CopyToClipboard() {
     var element = document.getElementById("result-container");
-    console.log(element.textContent);
-
-    navigator.clipboard.writeText(element.textContent);
+    var elementText = element.innerHTML.replaceAll('<li class="note-bullet">', '').replaceAll('</li>', '\n').replaceAll('<ul>', '').replaceAll('</ul>', '')
+    console.log(elementText)
+    navigator.clipboard.writeText(elementText);
 }
 
 // Listeners
