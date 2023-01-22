@@ -19,7 +19,7 @@ body {
 
 .button-holder {
     width: 100%;
-    padding: 5px;
+    padding: 15px;
 }
 
 .btn {
@@ -66,4 +66,71 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
+}
+
+#generate-btn {
+    background-color: #9a9afb !important;
+    color: rgb(255, 255, 255);
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    body {
+        background-color: rgb(32, 32, 36) !important;
+    }
+
+    .navbar {
+        background-color: rgb(41, 42, 45) !important;
+    }
+
+    #title,
+    .note-bullet {
+        color: white;
+    }
+
+    .opener {
+        color: rgb(232, 230, 230);
+    }
+}
+
+@media screen and (prefers-color-scheme: light) {
+    .navbar {
+        background-color: rgb(244, 244, 244) !important;
+        border-bottom: 0.5px rgba(128, 128, 128, 0.561) solid;
+    }
+
+    body {
+        background-color: rgb(255, 255, 255) !important;
+    }
+
+    #title,
+    .note-bullet {
+        color: rgb(28, 28, 28);
+    }
+
+    .opener {
+        color: grey;
+    }
+
+    #settings-img {
+        background: url("images/gear.png") fixed top center no-repeat;
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        z-index: -1;
+    }
+}
+
+/* For the background of the generated text */
+.bg-card {
+    background-color: #f8f9fa !important;
+    border-radius: 10px;
+    padding: 20px;
+    /* padding-bottom: 0 !important; */
+    margin: 20px;
+}
+
+ul {
+    margin-bottom: 0 !important;
+    margin-left: 16px;
+    padding: 0;
 }

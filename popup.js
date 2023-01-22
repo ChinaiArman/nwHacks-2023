@@ -46,7 +46,7 @@ async function onClickHandler() {
     // executes the script in the context of the current tab
     const scriptRes = await chrome.scripting.executeScript({
         target: { tabId: tab.id },
-        function: getSelectedText
+        function: getSelectedText,
     });
     const selectedText = scriptRes[0].result;
 
@@ -59,13 +59,16 @@ async function onMessageReceived(request, sender, sendResponse) {
         const resultDiv = document.getElementById("result-container");
         const notes = request.notes;
 
-        let formattedResults = '<ul>';
+        let formattedResults = "<ul>";
 
-        notes.split("- ").slice(1).forEach(element => {
-            formattedResults += `<li class="note-bullet">${element}</li>`;
-        });
+        notes
+            .split("- ")
+            .slice(1)
+            .forEach((element) => {
+                formattedResults += `<li class="note-bullet">${element}</li>`;
+            });
 
-        formattedResults += '</ul>';
+        formattedResults += "</ul>";
 
         resultDiv.innerHTML = formattedResults;
 
@@ -85,5 +88,17 @@ async function CopyToClipboard() {
 // Listeners
 document.getElementById("generate-btn").addEventListener("click", onClickHandler);
 document.getElementById("copy-btn").addEventListener("click", CopyToClipboard);
+document.getElementById("result-container").style.display = "none";
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => { onMessageReceived(request, sender, sendResponse) });
+document.getElementById("generate-btn").addEventListener("click", function () {
+    document.getElementById("result-container").style.display = "block";
+});
+
+// Listeners
+document
+    .getElementById("generate-btn")
+    .addEventListener("click", onClickHandler);
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    onMessageReceived(request, sender, sendResponse);
+});
