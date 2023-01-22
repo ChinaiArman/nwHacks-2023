@@ -168,6 +168,7 @@ ul {
     }
 
     #title,
+    #msg,
     .note-bullet {
         color: white;
     }
@@ -198,6 +199,7 @@ ul {
     }
 
     #title,
+    #msg,
     .note-bullet {
         color: rgb(28, 28, 28);
     }
