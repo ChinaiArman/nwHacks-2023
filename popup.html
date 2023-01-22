@@ -14,6 +14,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script>
+        // document.querySelectorAll('[data-toggle="tooltip"]').tooltip()
+    </script>
 </head>
 
 <body>
@@ -40,20 +45,26 @@
         </ol>
     </div>
     <div class="bg-card hidden">
-
-        <div class="loading-spinner-container">
-            <div id="loading-spinner" class="spinner-border hidden" role="status">
-            </div>
+        <div class="copy-btn-container">
+            <button id="copy-btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+                <img src="/images/clipboard.png" width="20" height="20">
+            </button>
         </div>
 
         <div id="result-container">
 
+        </div>
+
+        <div class="loading-spinner-container">
+            <div id="loading-spinner" class="spinner-border hidden" role="status">
+            </div>
         </div>
     </div>
 
     <div class="button-holder">
         <button id="generate-btn" class="btn" type="button">Generate</button>
     </div>
+    <p id="error-msg" class="hidden"></p>
 
     <script src="popup.js"></script>
 </body>

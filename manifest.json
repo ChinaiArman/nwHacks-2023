@@ -4,8 +4,7 @@
     "version": "1.0.0",
     "manifest_version": 3,
     "host_permissions": [
-        "https://*/*",
-        "http://*/*"
+        "<all_urls>"
     ],
     "icons": {
         "16": "/images/icon-16.png",
@@ -27,8 +26,5 @@
         "activeTab",
         "scripting",
         "tabs"
-    ],
-    "background": {
-        "service_worker": "background.js"
-    }
+    ]
 }
