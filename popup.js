@@ -27,6 +27,7 @@ async function onClickHandler() {
     });
     const selectedText = scriptRes[0].result;
 
+    // sends a message to the background script
     chrome.runtime.sendMessage({ selectedText: selectedText });
 }
 

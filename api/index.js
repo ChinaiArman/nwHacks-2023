@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors')
 
 const app = express();
-const port = 5000;
+const port = 3000;
 
 
 // import controllers
@@ -14,8 +14,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-app.get('/', async (req, res) => {
+app.post('/create-notes', async (req, res) => {
     // const prompt = req.body.prompt;
+    console.log(req.body.prompt);
     const prompt = "The quick brown fox jumps over the lazy dog.";
     const message = await notemaker(prompt);
     res.json({ notes: message });

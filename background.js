@@ -1,10 +1,17 @@
 
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
     if (request.selectedText) {
-        console.log("In background.js: ", request.selectedText);
+        const selectedText = request.selectedText;
 
-        // send a message back to the popup script
-        chrome.runtime.sendMessage({ status: "received" });
+        const response = await fetch("http://localhost:3000/create-notes", {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ prompt: selectedText })
+        })
+        console.log(response);
     }
 });
