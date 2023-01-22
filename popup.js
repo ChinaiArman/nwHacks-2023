@@ -59,6 +59,8 @@ async function onMessageReceived(request, sender, sendResponse) {
         const resultDiv = document.getElementById("result-container");
         const notes = request.notes;
 
+        console.log(notes);
+
         let formattedResults = "<ul>";
 
         notes
