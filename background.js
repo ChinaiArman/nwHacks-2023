@@ -12,6 +12,8 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
             },
             body: JSON.stringify({ prompt: selectedText })
         })
-        console.log(response);
+
+        const data = await response.json();
+        console.log(data.notes);
     }
 });
