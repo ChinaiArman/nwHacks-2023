@@ -12,7 +12,7 @@ function getSelectedText() {
 }
 
 function myFunction() {
-    console.log("in")
+    console.log("in");
     // Get the text field
     var copyText = document.getElementById("myInput");
 
@@ -21,7 +21,7 @@ function myFunction() {
     copyText.setSelectionRange(0, 99999); // For mobile devices
 
     // Copy the text inside the text field
-    navigator.clipboard.writeText('banana');
+    navigator.clipboard.writeText("banana");
 
     // Alert the copied text
     alert("Copied the text: " + copyText.value);
@@ -34,6 +34,8 @@ async function getCurrentTab() {
 }
 
 async function onClickHandler() {
+    // show the popup
+    document.querySelector(".bg-card").classList.toggle("hidden");
     // clear the results
     document.getElementById("result-container").innerHTML = "";
 
@@ -81,14 +83,16 @@ async function onMessageReceived(request, sender, sendResponse) {
 }
 
 async function CopyToClipboard() {
-    var element = document.getElementById("result-container")
-    console.log(element.textContent)
+    var element = document.getElementById("result-container");
+    console.log(element.textContent);
 
     navigator.clipboard.writeText(element.textContent);
 }
 
 // Listeners
-document.getElementById("generate-btn").addEventListener("click", onClickHandler);
+document
+    .getElementById("generate-btn")
+    .addEventListener("click", onClickHandler);
 document.getElementById("copy-btn").addEventListener("click", CopyToClipboard);
 document.getElementById("result-container").style.display = "none";
 

@@ -57,6 +57,10 @@ body {
     display: none !important;
 }
 
+.show {
+    display: block !important;
+}
+
 .note-bullet {
     font-size: 0.75em;
 }
