@@ -2,7 +2,7 @@ const { Configuration, OpenAIApi } = require("openai");
 
 
 const configuration = new Configuration({
-    apiKey: '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',
+    apiKey: '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',
 });
 const openai = new OpenAIApi(configuration);
 
@@ -18,10 +18,10 @@ async function notemaker(article) {
 
     try {
         const completion = await openai.createCompletion({
-            model: "text-curie-001",
+            model: "text-davinci-003",
             prompt: generatePrompt(article),
             temperature: 1,
-            max_tokens: 60,
+            max_tokens: 2000,
             top_p: 1.0,
             frequency_penalty: 0.0,
             presence_penalty: 1,
@@ -38,8 +38,7 @@ async function notemaker(article) {
 
 // generatePrompt function that takes in a string that is being used as a prompt for the OpenAI API.
 function generatePrompt(article) {
-    return `Article: ${article}
-  Summarize with bullet points, keep statistical details:`;
+    return `Summarize the following article using bullet points. Focus on conciseness, only grab the most important information. Preface each section with a section header: ${article}`;
 }
 
 
