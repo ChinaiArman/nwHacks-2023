@@ -13,6 +13,9 @@
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script>
+        // document.querySelectorAll('[data-toggle="tooltip"]').tooltip()
+    </script>
 </head>
 
 <body>
@@ -40,7 +43,9 @@
     </div>
     <div class="bg-card hidden">
         <div class="copy-btn-container">
-            <button id="copy-btn" align="right"><img src="/images/clipboard.png" width="20" height="20"></button>
+            <button id="copy-btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+                <img src="/images/clipboard.png" width="20" height="20">
+            </button>
         </div>
 
         <div id="result-container">
