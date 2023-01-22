@@ -119,3 +119,18 @@ body {
         z-index: -1;
     }
 }
+
+/* For the background of the generated text */
+.bg-card {
+    background-color: #f8f9fa !important;
+    border-radius: 10px;
+    padding: 20px;
+    /* padding-bottom: 0 !important; */
+    margin: 20px;
+}
+
+ul {
+    margin-bottom: 0 !important;
+    margin-left: 16px;
+    padding: 0;
+}
