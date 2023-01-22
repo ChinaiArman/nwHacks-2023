@@ -114,6 +114,21 @@ async function submitQuery(selectedText) {
     loadingSpinner.classList.add("hidden");
 }
 
+function tooLittleWordError() {
+    // shake the button
+    const generateBtn = document.getElementById("generate-btn");
+    generateBtn.classList.add("btn-error");
+
+    console.log("not enough text")
+    const errorMessageParagraph = document.getElementById("error-msg");
+    errorMessageParagraph.innerHTML = 'ERROR: Please select more than 10 words.';
+
+    // stop button shake
+    setTimeout(() => {
+        generateBtn.classList.remove("btn-error");
+    }, 500);
+}
+
 async function onClickHandler() {
     const tab = await getCurrentTab();
     // executes the script in the context of the current tab
@@ -123,14 +138,10 @@ async function onClickHandler() {
     });
     const selectedText = scriptRes[0].result;
 
-    if (selectedText.split(" ").length > 10) {
-        submitQuery(selectedText);
+    if (!selectedText || selectedText.split(" ").length < 10) {
+        tooLittleWordError();
     } else {
-        console.log("not enough text")
-        const resultDiv = document.getElementById("result-container");
-        const resultCard = document.querySelector(".bg-card");
-        resultCard.classList.remove("hidden");
-        resultDiv.innerHTML = '<p class="error-msg">Error: Please select more than 10 words.</p>';
+        submitQuery(selectedText);
     }
 }
 
