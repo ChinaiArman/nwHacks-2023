@@ -43,9 +43,16 @@ body {
     text-decoration: none !important;
 }
 
-#opener {
-    margin-left: 10px;
-    margin-right: 10px;
+.opener {
     color: grey;
     font-size: 12px;
+    font-style: italic;
+}
+
+.spinner-border {
+    color: #c9c9f8 !important;
+}
+
+.hidden {
+    display: none !important;
 }
