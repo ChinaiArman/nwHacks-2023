@@ -15,9 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.post('/create-notes', async (req, res) => {
-    // const prompt = req.body.prompt;
-    console.log(req.body.prompt);
-    const prompt = "The quick brown fox jumps over the lazy dog.";
+    const prompt = req.body.prompt;
     const message = await notemaker(prompt);
     res.json({ notes: message });
 })
