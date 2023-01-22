@@ -94,8 +94,8 @@ body {
 
 @media screen and (prefers-color-scheme: light) {
     .navbar {
-        background-color: rgb(244, 244, 244) !important;
-        border-bottom: 0.5px rgba(128, 128, 128, 0.561) solid;
+        background-color: #f8f9fa !important;
+        border-bottom: 0.5px rgba(178, 177, 177, 0.561) solid;
     }
 
     body {
