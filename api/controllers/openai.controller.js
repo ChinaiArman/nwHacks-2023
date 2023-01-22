@@ -20,7 +20,7 @@ async function notemaker(article) {
       model: "text-davinci-003",
       prompt: generatePrompt(article),
       temperature: 1,
-      max_tokens: 3000,
+      max_tokens: 1000,
       top_p: 1.0,
       frequency_penalty: 0.0,
       presence_penalty: 1,

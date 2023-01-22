@@ -83,6 +83,19 @@ async function submitQuery(selectedText) {
         formattedResults += "</ul>";
 
         resultDiv.innerHTML = formattedResults;
+    } else if (notes && notes.includes("*")) {
+        let formattedResults = "<ul>";
+
+        notes
+            .split("*")
+            .slice(1)
+            .forEach((element) => {
+                formattedResults += `<li class="note-bullet">${element.trim()}</li>`;
+            });
+
+        formattedResults += "</ul>";
+
+        resultDiv.innerHTML = formattedResults;
     } else if (notes && !notes.includes("-") && !notes.includes("•")) {
         let formattedResults = "<ul>";
 
