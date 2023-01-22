@@ -1,6 +1,6 @@
 function countWords(str) {
     return str.trim().split(/\s+/).length;
-};
+}
 
 function getSelectedText() {
     var text = "";
@@ -97,7 +97,8 @@ async function submitQuery(selectedText) {
 
         resultDiv.innerHTML = formattedResults;
     } else {
-        resultDiv.innerHTML = '<p class="error-msg">Error: Could not generate notes, please try again.</p>';
+        resultDiv.innerHTML =
+            '<p class="error-msg">Error: Could not generate notes, please try again.</p>';
     }
 
     // hide the loading spinner
@@ -111,7 +112,7 @@ function tooLittleWordError() {
 
     const errorMessageParagraph = document.getElementById("error-msg");
     errorMessageParagraph.classList.remove("hidden");
-    errorMessageParagraph.innerHTML = 'ERROR: Please select more than 10 words.';
+    errorMessageParagraph.innerHTML = "ERROR: Please select more than 10 words.";
 
     // stop button shake
     setTimeout(() => {
@@ -126,7 +127,8 @@ function tooManyWords() {
 
     const errorMessageParagraph = document.getElementById("error-msg");
     errorMessageParagraph.classList.remove("hidden");
-    errorMessageParagraph.innerHTML = 'ERROR: Please limit your selection to less than 1000 words.';
+    errorMessageParagraph.innerHTML =
+        "ERROR: Please limit your selection to less than 2000 words.";
 
     // stop button shake
     setTimeout(() => {
@@ -145,7 +147,7 @@ async function onClickHandler() {
 
     if (!selectedText || countWords(selectedText) < 10) {
         tooLittleWordError();
-    } else if (countWords(selectedText) > 1000) {
+    } else if (countWords(selectedText) > 2000) {
         tooManyWords();
     } else {
         submitQuery(selectedText);
@@ -154,7 +156,11 @@ async function onClickHandler() {
 
 function CopyToClipboard() {
     var element = document.getElementById("result-container");
-    var elementText = element.innerHTML.replaceAll('<li class="note-bullet">', '').replaceAll('</li>', '\n').replaceAll('<ul>', '').replaceAll('</ul>', '')
+    var elementText = element.innerHTML
+        .replaceAll('<li class="note-bullet">', "")
+        .replaceAll("</li>", "\n")
+        .replaceAll("<ul>", "")
+        .replaceAll("</ul>", "");
     navigator.clipboard.writeText(elementText);
 }
 
