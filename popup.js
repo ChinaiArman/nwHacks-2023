@@ -8,7 +8,7 @@ function getSelectedText() {
         text = document.selection.createRange().text;
     }
 
-    text.replace('-', '').replace('•', '');
+    text = text.replace(/[^A-Za-z0-9,\.,?!() ]/g, " ");
     return text;
 }
 
